@@ -1,7 +1,7 @@
 # calculator with all buttons
 
 
-import simplegui
+import simpleguitk
 
 
 # intialize globals
@@ -68,7 +68,7 @@ def new_var():
     operand = y
     output()
 # create frame
-f = simplegui.create_frame("Calculator",300,300)
+f = simpleguitk.create_frame("Calculator",300,300)
 
 # register event handlers
 f.add_button("Print", output, 100)

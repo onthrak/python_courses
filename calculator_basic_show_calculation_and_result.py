@@ -1,7 +1,7 @@
 # calculator with all buttons
 
 
-import simplegui
+import simpleguitk
 
 
 # intialize globals
@@ -13,8 +13,8 @@ and you click button "Show result"
 and you get result in window
 """
 
-x=float(raw_input("set store")) ## 
-y=float(raw_input("set operand")) ##
+x=float(raw_input("set store: ")) ## 
+y=float(raw_input("set operand: ")) ##
 store = x
 operand = y
 message = str(round(store,4))
@@ -61,9 +61,13 @@ def sub():
 def mult():
     """ multiply store by operand"""
     global store
-    store = store * operand
     global oper_msq
-    oper_msq=str(round(store/operand,4))+" * "+str(round(operand,4))
+    if operand == 0:
+        store = 0
+        oper_msq=str(0)
+    else:
+        store = store * operand
+        oper_msq=str(round(store/operand,4))+" * "+str(round(operand,4))
     global message
     message = str(round(store,4))
     output()
@@ -71,9 +75,13 @@ def mult():
 def div():
     """ divide store by operand"""
     global store
-    store = store / operand
     global oper_msq
-    oper_msq=str(round(store*operand,4))+" / "+str(round(operand,4))
+    if operand == 0:
+        store = 0
+        oper_msq = "You cannot divide by 0"
+    else:
+        store = store / operand
+        oper_msq=str(round(store*operand,4))+" / "+str(round(operand,4))
     global message
     message = str(round(store,4))
     output()
@@ -127,12 +135,12 @@ def click():
     
 # Handler to draw on canvas
 def draw(canvas):
-    canvas.draw_text('RESULT:', [50, 50], 48, 'Blue', "sans-serif")
-    canvas.draw_text(message, [50,150], 64, "Green")
-    canvas.draw_text(oper_msq, [50,250], 48, "red")
+    canvas.draw_text('RESULT:', [50, 80], 48, 'Blue', "sans-serif")
+    canvas.draw_text(message, [50,170], 64, "Green")
+    canvas.draw_text(oper_msq, [50,270], 48, "red")
 
 # create frame
-f = simplegui.create_frame("Calculator",700,300)
+f = simpleguitk.create_frame("Calculator",700,300)
 #f.add_button("Show result", click, 200)
 f.set_draw_handler(draw)
     
