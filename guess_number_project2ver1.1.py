@@ -1,7 +1,10 @@
 # template for "Guess the number" mini-project
 # input will come from buttons and an input field
 # all output for the game will be printed in the console
-import simpleguitk
+try:
+    import simplegui
+except ImportError:
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 import math
 import random
 ### setting range for first game
@@ -69,7 +72,7 @@ def input_guess(guess):
     
 
 # create frame
-f = simpleguitk.create_frame("Guess the number",200,200)
+f = simplegui.create_frame("Guess the number",200,200)
 f.add_button("Range is [0,100)", range100, 100)
 f.add_button("Range is [0,1000)", range1000, 100)
 f.add_input("Enter a guess", input_guess, 100)

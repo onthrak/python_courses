@@ -1,7 +1,10 @@
 # calculator with all buttons
 
 
-import simpleguitk
+try:
+    import simplegui
+except ImportError:
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 
 # intialize globals
@@ -91,7 +94,10 @@ def exp():
     global store
     store = store ** operand
     global oper_msq
-    oper_msq=str(round(store**(1/operand),4))+" ^ "+str(round(operand,4))
+    try:
+        oper_msq=str(round(store**(1/operand),4))+" ^ "+str(round(operand,4))
+    except:
+        oper_msq = "error"
     global message
     message = str(round(store,4))
     output()
@@ -99,7 +105,11 @@ def exp():
 def root():
     """ root store by operand """
     global store
-    store= store ** (1.0/operand)
+    try:
+        store = store ** (1.0/operand)
+    except:
+        store = store
+
     global oper_msq
     oper_msq=str(round(store**operand,4))+" ^(1/"+str(round(operand,4))+ ")"
     global message
@@ -140,7 +150,7 @@ def draw(canvas):
     canvas.draw_text(oper_msq, [50,270], 48, "red")
 
 # create frame
-f = simpleguitk.create_frame("Calculator",700,300)
+f = simplegui.create_frame("Calculator",700,300)
 #f.add_button("Show result", click, 200)
 f.set_draw_handler(draw)
     

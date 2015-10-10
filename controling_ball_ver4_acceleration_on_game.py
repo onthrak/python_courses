@@ -1,6 +1,9 @@
 # Ball motion with a defined timer
 # Speed of ball is increasing for every 1 second
-import simplegui
+try:
+    import simplegui
+except ImportError:
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 import random
 # Initialize globals
 WIDTH = 800
@@ -157,7 +160,7 @@ def keydown(key):
             timer.start()
         
 # create frame
-frame = simplegui.create_frame("Motion", WIDTH, HEIGHT)
+frame = simplegui.create_frame("Ball game", WIDTH, HEIGHT)
 label1 = frame.add_label('Use arrow keys to control ball', 200)
 label_space = frame.add_label('')
 label2 = frame.add_label('If you want stop the ball, use space key', 200)
